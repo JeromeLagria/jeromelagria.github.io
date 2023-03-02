@@ -365,18 +365,7 @@
     bottom: 0;
     left: 35%;
 }
-.sub-aboutme{
-    text-align: center;
-    font-family: var(--hFont);
-    font-size: 50px;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.537);
-    text-transform: uppercase;
-}
-.sub-aboutme span{
-    color: var(--themeColor);
-}
+
 .sub-title{
     text-align: center;
     font-family: var(--hFont);
