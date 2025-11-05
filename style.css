@@ -22,6 +22,20 @@
     display: none;   /* hide line breaks only on 1440px */
   }
 }
+@media (min-width: 1024px) and (max-width: 1439px) {
+      .image img {
+        margin-left: 30px;  
+        margin-top: 45px;
+        max-width: 700px;
+        width: 85%;
+        transform: translateX(-35px) !important;
+    }
+  .main-container .content {
+    transform: translateX(-90px) scale(1.1);
+    transform-origin: left center;
+    margin-top: 40px;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .main-container {
@@ -1025,7 +1039,7 @@ section:first-of-type {
 }
 @media (min-width: 1441px) {
   .main-container .content {
-    transform: translateX(-120px) scale(1.1);
+    transform: translateX(-90px) scale(1.1);
     transform-origin: left center;
     margin-top: 40px;
   }
