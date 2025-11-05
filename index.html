@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>Jerome Portfolio</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="fade-up" data-aos-duration="1000">
+                <span>Jerome Portfolio</span> 
+            </div>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#" onclick="scrollToTop(event)">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"><a href="#about">About Me</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#myworks">My Works</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#skills">Skills</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#services">Services</a></div>
+                <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#contact-me">Contact Me</a></div>
+            </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="social-links">
+                <a href="#"onclick="scrollToTop(event)">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#myworks">My Works</a>
+                <a href="#skills">Skills</a>
+                <a href="#services">Services</a>
+                <a href="#contact-me">Contact Us</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+        <section>
+            <div class="main-container">
+                <div class="image"data-aos="fade-in" data-aos-duration="1000" data-aos-duration="800">
+                    <img src="image.png" alt="">
+                </div>
+                <div class="content">
+                    <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm Jerome <span></span></h1>
+                    <div class="Typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">I'm a <span id="typed"></span></div>
+                    <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1000"><p>Hi, I’m Jerome Lagria. I specialize in web development, UI/UX design, and graphic design, <br>creating intuitive, user-centered digital experiences and visually compelling content. <br>I am passionate about turning ideas into intuitive solutions, delivering high-quality  <br> work with attention to detail, creativity, and efficiency. My goal is to help businesses <br> and projects succeed by combining technical skills with engaging designs.</p></div>
+                    <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                        <a href="https://www.linkedin.com/in/jerome-lagria/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/jerome.lagria" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        </div>
+                        <div class="btn-container" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300" style="display: flex; gap: 15px;">
+                            <button onclick="window.open('https://www.canva.com/design/DAG20A85Hhs/VHkD2qlYi0cVQOYEnE9wkg/edit?utm_content=DAG20A85Hhs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton', '_blank')">
+                            View My CV
+                            </button>
+                            <button onclick="document.getElementById('myworks').scrollIntoView({ behavior: 'smooth' })">
+                            View My Works
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="about-section">
+          <div class="about-container" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+            <!-- Left: Image -->
+            <div class="about-image">
+              <img src="image1.png" alt="Your photo" />
+            </div>
+    <div class="about-text">
+  <!-- Arrow icon above text -->
+
+    <!-- Right: Text -->
+    <div class="about-heading">
+      <h2>About Me</h2>
+      <p>
+        A graduate with a Bachelor’s degree in Information Technology, Major in Database. I specialize in 
+        leveraging creativity and technical expertise to deliver visually engaging web solutions and intuitive
+        interface designs. I am committed to managing projects effectively and consistently delivering high-quality work on time in web development, graphic design, and UI/UX design.
+      </p>
+      <p>
+        I am a Web Developer specializing in UI/UX design, creating compelling, user-centered interfaces with
+        Figma. During my previous internship, I served as the lead designer for the team, completing multiple
+        projects that enhanced usability and visual appeal. This experience strengthened my ability to translate
+        ideas into intuitive, user-friendly digital experiences that blend functionality with aesthetics.
+      </p>
+      <p>
+        I also gained experience as a 3D LiDAR Specialist, handling 3D data annotation tasks in Remotask that
+        contributed to AI and machine learning projects. This role expanded my knowledge of different software
+        tools and reinforced my ability to manage technical projects with precision and efficiency.
+      </p>
+      <p>
+      <p>
+        <strong>Always within reach, always ready. Try me and see results!</strong>
+      </p>
+    </div>
+   </div>
+ </section>
+<section id="myworks" class="works-section">
+  <div class="container">
+    <div class="works-heading" data-aos="fade-up" data-aos-duration="1000">
+      <h2>My Works</h2>
+      <p>Here are some of the projects I’ve worked on, showcasing my creativity and skills.</p>
+    </div>
+
+    <div class="works-grid">
+      <!-- Work 1 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+        <img src="img/port1.png" alt="Project 1">
+        <div class="work-info">
+          <h3>Metadvanced Webapp Revamp</h3>
+          <a href="https://www.figma.com/design/od5SeUEKmV3Ap03UnawiI0/METADVANCED?node-id=0-1&p=f&t=SYLrmEkwVmFS7lhk-0" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Work 2 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+        <img src="img/port2.png" alt="Project 2">
+        <div class="work-info">
+          <h3>Advanced Virtual Staff UI UX Design</h3>
+          <a href="https://www.figma.com/design/hEDi0psguATAmsHwy7rLHV/Virtual-Assistants-for-Cleaning-Services?node-id=0-1&p=f&t=bU18LdIIwuDvLPdE-0" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Work 3 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+        <img src="img/port3.png" alt="Project 3">
+        <div class="work-info">
+          <h3>Green Cleaner Services UI UX Design</h3>
+        <a href="https://www.figma.com/design/b9x2EfqQa0gLyDsIpCisk4/Untitled?node-id=0-1&p=f&t=RTjANRXq9BSqnSS9-0" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Work 4 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+        <img src="img/port4.png" alt="Project 4">
+        <div class="work-info">
+          <h3>CommunItask Full UI UX Design</h3>
+        <a href="https://www.figma.com/design/FBeP1u9djScGOytN48S3Yl/CommunITask?node-id=1-8475&p=f&t=ZzgHeQnC8feqcsj5-0" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- Work 5 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
+        <img src="img/port5.png" alt="Project 5">
+        <div class="work-info">
+          <h3>UI UX Designer of Websitemanagers.ca</h3>
+        <a href="https://www.canva.com/design/DAG3ziwZ-kQ/U0nvbD-k0YtwkF2UKzU7Mg/edit?utm_content=DAG3ziwZ-kQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- Work 6 -->
+      <div class="work-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+        <img src="img/port6.png" alt="Project 6">
+        <div class="work-info">
+          <h3>UI UX Co-designer of 24hvacservices</h3>
+          <a href="https://24hvacservices.com/" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+        <!-- Hidden items -->
+  <div class="work-item hidden" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+    <img src="img/port7.png" alt="Project 7">
+    <div class="work-info">
+      <h3>Metadvanced Facebook Cover</h3>
+    <a href="https://www.canva.com/design/DAG18-9rzEI/oZRRdEoxBo4dgrSqV6vBHQ/edit?utm_content=DAG18-9rzEI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+  <div class="work-item hidden" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
+    <img src="img/port8.png" alt="Project 8">
+    <div class="work-info">
+      <h3>ParkTrack UI UX</h3>
+    <a href="https://www.canva.com/design/DAGiDOMJJPs/J8rLT7G1ofrLTlAvzT6xrw/edit?utm_content=DAGiDOMJJPs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+  <div class="work-item hidden" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
+    <img src="img/port9.png" alt="Project 9">
+    <div class="work-info">
+      <h3>Twitter Clone</h3>
+    <a href="https://jeromelagria.github.io/twitterclonelagria/" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+      </div>
+
+<!-- Show More button -->
+<div class="show-more-container">
+  <button id="showMoreBtn" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="900">Show More</button>
+  <button id="showLessBtn" style="display:none;">Show Less</button>
+</div>
+</section>
+    <section id="skills" class="skills-section">
+        <div class="skills-heading" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+            <h2>Skills</h2>
+        </div>
+    <div class="skills-grid">
+        <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-laptop"></i>
+            <h3>UI/UX Design</h3>
+            <p>Designing intuitive, user-friendly interfaces.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-sitemap"></i>
+            <h3>Organizational skills</h3>
+            <p>Keeping tasks and schedules structured and efficient.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-business-time"></i>
+            <h3>Time management</h3>
+            <p>Prioritizing tasks to meet deadlines effectively.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-people-group"></i>
+            <h3>Teamwork & Collaboration</h3>
+            <p>Working seamlessly with teams to achieve goals.</p>
+        </div>
+     <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-image"></i>
+            <h3>Graphic Design</h3>
+            <p>Creating visually engaging digital content.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-cube"></i>
+            <h3>Data Annotation</h3>
+            <p>Experienced with 3D LiDAR labeling software.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-keyboard"></i>
+            <h3>Data encoding</h3>
+            <p>Accurately entering and managing data records.</p>
+        </div>
+    <div class="skill-box" data-aos="fade-up" data-aos-duration="1000">
+            <i class="fa-solid fa-info"></i>
+            <h3>Computer literacy</h3>
+            <p>Proficient in using various computer software tools.</p>
+        </div>
+    </div>
+</section>
+    <section id="services" class="services-section">
+  <div class="services-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+    <!-- Left Text Column -->
+    <div class="services-text">
+      <h2>Services I Offer</h2>
+      <p>
+        All the resources your business needs to grow, succeed, and reach its full potential. Spend less time working IN your business and more time working ON it.
+      </p>
+      <a class="btn view-all" href="#"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Right Grid of Cards -->
+    <div class="services-grid">
+      <div class="service-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <img src="Virtual.png" alt="Web Developer">
+        <h3>Web Developer</h3>
+        <p>From web development to UI/UX design, I deliver functional and visually stunning websites tailored to your needs.</p>
+      </div>
+
+      <div class="service-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+        <img src="Sales.png" alt="UI/UX Designer">
+        <h3>UI/UX Designer</h3>
+        <p>Designing interfaces that balance aesthetics and usability for an exceptional user experience.</p>
+      </div>
+
+      <div class="service-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+        <img src="Graphic.png" alt="Graphic Designer">
+        <h3>Graphic Designer</h3>
+        <p>Creating visually compelling designs to enhance branding and marketing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="contact-me" class="contact-me-section">
+  <div class="contact-me" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+    <h2>Contact Me</h2>
+    <p>Email: jerome.lagria14@gmail.com</p>
+    <p>Phone: +63 994 301 3691</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/jerome-lagria//" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://www.facebook.com/jerome.lagria" target="_blank">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({
+    offset: 200,   // triggers animation 200px before element enters viewport
+    once: true,
+    duration: 1000
+});
+</script>
+
+<script>
+function scrollToTop(event) {
+    event.preventDefault(); 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.links a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+function hamburg(){
+    const navbar = document.querySelector(".dropdown");
+    navbar.style.transform = "translateY(0px)";
+}
+
+function cancel(){
+    const navbar = document.querySelector(".dropdown");
+    navbar.style.transform = "translateY(-500px)";
+}
+</script>
+
+<!-- Show More AOS Script -->
+<script>
+const showMoreBtn = document.getElementById('showMoreBtn');
+const showLessBtn = document.getElementById('showLessBtn');
+const hiddenItems = document.querySelectorAll('.work-item.hidden');
+
+showMoreBtn.addEventListener('click', () => {
+    hiddenItems.forEach((item, index) => {
+        // Remove hidden class
+        item.classList.remove('hidden');
+
+        // Set AOS attributes for animation
+        item.setAttribute('data-aos', 'zoom-in');
+        item.setAttribute('data-aos-duration', '1000');
+        item.setAttribute('data-aos-delay', index * 100); // stagger effect
+
+        // Refresh AOS to trigger animation
+        AOS.refreshHard();
+    });
+
+    showMoreBtn.style.display = 'none';
+    showLessBtn.style.display = 'inline-block';
+});
+
+showLessBtn.addEventListener('click', () => {
+    hiddenItems.forEach(item => {
+        item.classList.add('hidden');
+    });
+
+    showMoreBtn.style.display = 'inline-block';
+    showLessBtn.style.display = 'none';
+});
+</script>
+
+
+<script src="typewriter.js"></script>
+</body>
+</html>
