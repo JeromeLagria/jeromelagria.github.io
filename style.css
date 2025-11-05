@@ -7,6 +7,7 @@
     margin-left: 30px;
     margin-top: 45px;
 }
+
 @media (max-width: 425px) {
   .image img {
     margin: 0 auto !important;   /* center horizontally */
@@ -879,7 +880,11 @@ section:first-of-type {
         left: 15px;
         font-size: 1.5rem;
     }
-
+    .content p {
+        max-width: 600px; /* keeps same wrapping across laptop & desktop */
+        line-height: 1.8;
+        word-wrap: break-word;
+    }
     .main-container {
         display: flex;
         flex-direction: column;
@@ -999,12 +1004,11 @@ section:first-of-type {
     display: block;
     margin: 0 auto;      /* center image */
   }
-}
     
     .service-box img {
         max-height: 300px;
     }
-    
+  }
 /* Target QHD and up */
 @media (min-width: 1440px) {
   .main-container .content {
