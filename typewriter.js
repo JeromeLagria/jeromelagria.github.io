@@ -1,4 +1,4 @@
-const words = [" Web Developer.", " UI/UX Designer.", " Graphic Designer."];
+const words = [" Graphic Designer.", " Web Designer.", " Virtual Assistant."];
 const typed = document.getElementById("typed");
 let wordIndex = 0;
 let charIndex = 0;

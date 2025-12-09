@@ -116,7 +116,8 @@
 }
 /* Adjust the value to your navbar's height */
 #about, #myworks, #skills, #services, #contact-me {
-    scroll-margin-top: 70px;
+    min-height: auto;        /* cancel the 90vh */
+    padding: 5rem 0;         /* smaller vertical padding than 5rem */
 }
 
 html {
@@ -463,7 +464,7 @@ section:first-of-type {
 .about-text h2 {
   font-size: 2.2rem;
   margin-bottom: 20px;
-  color: rgb(154, 131, 101);
+  color: rgb(132,103,69);
 }
 
 .about-text p {
@@ -510,6 +511,57 @@ section:first-of-type {
   margin: 0 auto;
   max-width: 720px;
   line-height: 1.5;
+  
+}
+.works-filter {
+  text-align: center;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* angled tab style */
+.filter-btn {
+  position: relative;
+  border: none;
+  padding: 8px 28px;
+  background: rgb(154, 131, 101);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  /* create angled ends */
+  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 8% 50%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.18);
+  opacity: 0.85;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+/* keep text straight */
+.filter-btn span {
+  display: inline-block;
+}
+
+/* hover & active states */
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.22);
+  opacity: 1;
+}
+
+.filter-btn.active {
+  background: rgb(132, 103, 69);   /* slightly darker brown when active */
+  opacity: 1;
+}
+
+/* Hide items via filter (different from your .hidden used for Show More) */
+.work-item.filter-hide {
+  display: none !important;
 }
 
 /* grid layout (inspired from old portfolio) */
@@ -659,7 +711,7 @@ section:first-of-type {
 .skills-heading h2 {
   font-size: 2.2rem;               /* same as About Me */
   margin-bottom: 40px;
-  color: rgb(154, 131, 101);       /* same color */
+  color: rgb(132,103,69);       /* same color */
   text-align: center;              /* center align */
 }
 /* --- Skills grid: desktop 4 columns, responsive down to 1 column --- */
@@ -755,7 +807,7 @@ section:first-of-type {
 .services-text h2 {
   font-size: 2.4rem;
   margin-bottom: 16px;
-  color: rgb(154, 131, 101);
+  color: rgb(132,103,69);
 }
 
 .services-text p {
@@ -829,39 +881,137 @@ section:first-of-type {
   grid-auto-rows: 1fr;
 }
 
-.contact-me {
+/* ===== CONTACT SECTION – NEW CARD STYLE ===== */
+
+.contact-card {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: rgb(154, 131, 101);      /* your chosen color */
+  border-radius: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  padding: 40px 32px 36px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+/* Title */
+.contact-title {
+  font-size: 2.3rem;
+  font-weight: 700;
   text-align: center;
-  margin-top: 30px;
-  color: rgb(154, 131, 101);
-  font-size: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
 }
 
-.contact-me .social-links {
-  margin-top: 5px;
-  margin-bottom: 15px;
+/* Subtitle */
+.contact-subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Email link stays blue */
+.contact-email {
+  color: rgba(0, 0, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+}
+.contact-email:hover {
+  text-decoration: underline;
+}
+
+/* Form layout – add subtle divider to structure the card */
+.contact-form {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.contact-me .social-links i {
-  font-size: 2rem;
-  color: rgb(154, 131, 101);
-  transition: 0.3s;
+/* Labels – make them feel intentional */
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
 }
 
-.contact-me .social-links i:hover {
-  color: white;
-  background-color: rgb(154, 131, 101);
-  border-radius: 50%;
-  padding: 5px;
-  transform: scale(1.2);
+/* Inputs / textarea */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;                 /* ↑ more height */
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.1); /* ↑ thicker border */
+  background: #fdfaf6;                
+  color: rgb(108, 84, 55);
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: 
+    inset 0 1px 2px rgba(0,0,0,0.08),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
 }
-#contact-me {
-    min-height: auto;  
-    height: auto;
-    padding-bottom: 40px; 
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(108, 84, 55, 0.55);
 }
+
+/* Focus state */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1e63ff;
+  box-shadow: 0 0 0 1px rgba(30, 99, 255, 0.35);
+  transform: translateY(-1px);
+  background: #ffffff;
+}
+
+/* Button */
+.contact-submit-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 255, 0.8);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.contact-status {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.contact-submit-btn:hover {
+  background: rgba(0, 0, 255,);
+  box-shadow: 0 10px 25px rgba(0, 0, 255,);
+  transform: translateY(-1px);
+}
+
+.contact-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(0, 0, 255,);
+}
+
 @media (max-width: 1100px) {
   .services-container { grid-template-columns: 1fr; } /* text on top, cards underneath */
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -875,8 +1025,17 @@ section:first-of-type {
   .works-grid { grid-template-columns: 1fr; }
   .work-item img { height: 280px; } /* let it be taller on mobile for visual impact */
   .works-heading h2 { font-size: 1.8rem; }
+  .contact-card {
+    padding: 28px 20px 32px;
+    border-radius: 14px;
+  }
+  .contact-title {
+    font-size: 1.8rem;
+  }
+  .contact-subtitle {
+    font-size: 0.9rem;
+  }
 }
-
 
 @media (max-width: 1024px) {        /* tablets/phones */
     section {
