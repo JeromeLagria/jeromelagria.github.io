@@ -669,7 +669,9 @@ section:first-of-type {
 }
 
 .show-more-container {
-  text-align: center;
+  grid-column: 1 / -1;      /* span all 3 columns */
+  display: flex;
+  justify-content: center;  /* center the buttons horizontally */
   margin-top: 30px;
 }
 
