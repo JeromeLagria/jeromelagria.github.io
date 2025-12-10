@@ -115,9 +115,13 @@
     box-sizing: border-box;
 }
 /* Adjust the value to your navbar's height */
-#about, #myworks, #skills, #services, #contact-me {
-    min-height: auto;        /* cancel the 90vh */
-    padding: 5rem 0;         /* smaller vertical padding than 5rem */
+#about,
+#myworks,
+#skills,
+#services,
+#contact-me {
+  scroll-margin-top: 12vh;   /* a bit more than your 10vh navbar */
+  padding: 4rem 0;           /* keep a nice vertical spacing */
 }
 
 html {
