@@ -114,10 +114,10 @@
       <p style="font-weight: 200;">Here are some of the projects I’ve worked on, showcasing my creativity and skills.</p>
     </div>
     <div class="works-filter" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
-      <button class="filter-btn" data-filter="graphic">
+        <button class="filter-btn active" data-filter="graphic">
     <span>Graphic Design</span>
   </button>
-      <button class="filter-btn active" data-filter="web">
+        <button class="filter-btn" data-filter="web">
     <span>Web Design</span>
   </button>
 </div>
@@ -568,6 +568,12 @@ filterBtns.forEach(btn => {
       }
     });
   });
+});
+
+// set default filter to "graphic" on load
+window.addEventListener('DOMContentLoaded', () => {
+  const defaultBtn = document.querySelector('.filter-btn[data-filter="graphic"]');
+  if (defaultBtn) defaultBtn.click();
 });
 </script>
 <script>
