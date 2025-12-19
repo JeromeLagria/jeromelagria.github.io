@@ -17,6 +17,16 @@
   }
 }
 
+@media (max-width: 767px) {
+  .image img {
+    margin: 0 auto !important;   /* center horizontally */
+    display: block;
+    transform: none !important;  /* remove any translate offsets */
+    width: 85%;
+    max-width: 350px;            /* optional: adjust if too wide */
+  }
+}
+
 @media (min-width: 1400px) and (max-width: 1499px) {
   .main-container .content p br {
     display: none;   /* hide line breaks only on 1440px */
@@ -1016,6 +1026,10 @@ section:first-of-type {
 .contact-submit-btn:active {
   transform: translateY(0);
   box-shadow: 0 5px 14px rgba(0, 0, 255,);
+}
+
+#skills {
+  margin-bottom: -10vh !important;
 }
 
 @media (max-width: 1100px) {
