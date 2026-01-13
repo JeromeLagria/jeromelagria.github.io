@@ -576,6 +576,28 @@ window.addEventListener('DOMContentLoaded', () => {
   if (defaultBtn) defaultBtn.click();
 });
 </script>
+
+<script>
+// Automatically apply filter based on URL
+window.addEventListener('DOMContentLoaded', () => {
+    // Get URL hash & query
+    const hash = window.location.hash; // e.g., "#myworks?filter=web"
+    if (!hash.startsWith('#myworks')) return; // Only run on #myworks
+
+    const params = new URLSearchParams(hash.split('?')[1]);
+    const filterValue = params.get('filter'); // "web" or "graphic"
+
+    if (filterValue) {
+        const btn = document.querySelector(`.filter-btn[data-filter="${filterValue}"]`);
+        if (btn) btn.click(); // trigger the filter button
+    }
+
+    // Smooth scroll to #myworks
+    const section = document.querySelector('#myworks');
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+
 <script>
 (function () {
   const form = document.getElementById('contactForm');
