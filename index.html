@@ -520,17 +520,12 @@ const hiddenItems = document.querySelectorAll('.work-item.hidden');
 
 showMoreBtn.addEventListener('click', () => {
     hiddenItems.forEach((item, index) => {
-        // Remove hidden class
         item.classList.remove('hidden');
-
-        // Set AOS attributes for animation
         item.setAttribute('data-aos', 'zoom-in');
         item.setAttribute('data-aos-duration', '1000');
-        item.setAttribute('data-aos-delay', index * 100); // stagger effect
-
-        // Refresh AOS to trigger animation
-        AOS.refreshHard();
+        item.setAttribute('data-aos-delay', index * 100);
     });
+    AOS.refresh(); // Only once, after loop
 
     showMoreBtn.style.display = 'none';
     showLessBtn.style.display = 'inline-block';
@@ -552,21 +547,18 @@ const workItems = document.querySelectorAll('.work-item');
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    // active button state
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    const filter = btn.dataset.filter; // "web" or "graphic"
+    const filter = btn.dataset.filter;
 
     workItems.forEach(item => {
-      const category = item.dataset.category; // from data-category
-
-      if (category === filter) {
-        item.classList.remove('filter-hide');
-      } else {
-        item.classList.add('filter-hide');
-      }
+      const category = item.dataset.category;
+      if (category === filter) item.classList.remove('filter-hide');
+      else item.classList.add('filter-hide');
     });
+
+    AOS.refresh(); // triggers animation for visible items
   });
 });
 
