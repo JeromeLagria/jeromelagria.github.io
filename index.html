@@ -571,31 +571,12 @@ filterBtns.forEach(btn => {
 });
 
 // set default filter to "graphic" on load
-window.addEventListener('load', () => {
-  const hash = window.location.hash; 
-  // #myworks=web
-  // #myworks=graphic
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  const filter = hash === '#web' ? 'web' : 'graphic';
 
-  let filter = 'graphic'; // default
-
-  if (hash.includes('=')) {
-    const value = hash.split('=')[1];
-    if (value === 'web' || value === 'graphic') {
-      filter = value;
-    }
-  }
-
-  if (hash.startsWith('#myworks')) {
-    const section = document.getElementById('myworks');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  setTimeout(() => {
-    const btn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
-    if (btn) btn.click();
-  }, 300);
+  const btn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+  if (btn) btn.click();
 });
 </script>
 <script>
