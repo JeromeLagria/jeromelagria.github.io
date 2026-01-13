@@ -571,22 +571,20 @@ filterBtns.forEach(btn => {
 });
 
 // set default filter to "graphic" on load
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const hash = window.location.hash; 
-  // examples:
-  // #myworks
-  // #myworks/web
-  // #myworks/graphic
+  // #myworks=web
+  // #myworks=graphic
 
   let filter = 'graphic'; // default
 
-  if (hash.includes('/web')) {
-    filter = 'web';
-  } else if (hash.includes('/graphic')) {
-    filter = 'graphic';
+  if (hash.includes('=')) {
+    const value = hash.split('=')[1];
+    if (value === 'web' || value === 'graphic') {
+      filter = value;
+    }
   }
 
-  // Scroll to My Works section if hash contains it
   if (hash.startsWith('#myworks')) {
     const section = document.getElementById('myworks');
     if (section) {
@@ -594,11 +592,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Click the correct filter button
-  const targetBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
-  if (targetBtn) {
-    targetBtn.click();
-  }
+  setTimeout(() => {
+    const btn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+    if (btn) btn.click();
+  }, 300);
 });
 </script>
 <script>
