@@ -1243,3 +1243,27 @@ section:first-of-type {
     zoom: 1.25;   /* Scale up content by 25% */
   }
 }
+
+/* Keep the full animated role on one line on narrow phones. */
+@media (max-width: 480px) {
+  .main-container .content .Typewriter {
+    font-size: clamp(1rem, 5.2vw, 1.5rem);
+    white-space: nowrap;
+  }
+
+  .main-container .content .Typewriter span {
+    font-size: inherit;
+  }
+
+  .main-container .content .btn-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-container .content button {
+    flex: 1 1 130px;
+    min-width: 0;
+    margin: 10px 0 0;
+    padding: 5px 10px;
+  }
+}

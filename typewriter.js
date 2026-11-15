@@ -1,9 +1,13 @@
-const words = [" Creative Strategist.", " Web Designer.", " Virtual Assistant."];
+const words = [" Creative Strategist.", " Graphic Designer.", " Video Editor.", " AI Ad Specialist."];
 const typed = document.getElementById("typed");
 let wordIndex = 0;
 let charIndex = 0;
 
 function type() {
+    if (charIndex === 0) {
+        const article = words[wordIndex].trim().startsWith("AI") ? "an" : "a";
+        typed.previousSibling.textContent = `I'm ${article} `;
+    }
     if (charIndex < words[wordIndex].length) {
         typed.textContent += words[wordIndex][charIndex];
         charIndex++;
