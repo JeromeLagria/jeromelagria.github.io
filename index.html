@@ -99,19 +99,52 @@
   <div class="container">
     <div class="works-heading" data-aos="fade-up" data-aos-duration="1000">
       <h2>My Works</h2>
-      <p style="font-weight: 200;">A selection of my static ad creatives, alongside web and UI/UX work from my design background.</p>
+      <p>A selection of my advertising creatives and design work.</p>
     </div>
-    <div class="works-filter" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
-        <button class="filter-btn active" data-filter="graphic">
-    <span>Static Ad Creatives</span>
-  </button>
-        <button class="filter-btn" data-filter="web">
-    <span>Web &amp; UI/UX Design</span>
-  </button>
-</div>
-    <div class="works-grid">
+    <div class="works-filter" role="group" aria-label="Work categories">
+      <button type="button" class="filter-btn" data-filter="video" aria-pressed="true" aria-controls="video-ads">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 17-4 1 5-17 4zM7 6l4 4m2-5 4 4M4 12h17v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
+        <span>Video Ads</span>
+      </button>
+      <button type="button" class="filter-btn" data-filter="graphic" aria-pressed="false" aria-controls="design-projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9" r="1.5"/><path d="m3 17 5-4.5 3.5 3 4.5-5 5 5"/></svg>
+        <span>Static Ads</span>
+      </button>
+      <button type="button" class="filter-btn" data-filter="web" aria-pressed="false" aria-controls="design-projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M3 9h18M9 9v11m-3-13.5h.01m2.5 0h.01"/></svg>
+        <span>Web &amp; UI/UX</span>
+      </button>
+    </div>
+    <div id="video-ads" class="video-gallery">
+      <div class="video-filters" role="group" aria-labelledby="video-type-label">
+        <span id="video-type-label">Video Type:</span>
+        <button type="button" data-type="all" aria-pressed="true">All Videos</button>
+        <button type="button" data-type="ugc" aria-pressed="false">UGC-Style</button>
+        <button type="button" data-type="viral" aria-pressed="false">Viral Reels</button>
+      </div>
+      <div class="video-grid"></div>
+      <template id="video-preview">
+        <div class="video-card">
+          <video muted loop playsinline preload="none"></video>
+          <button type="button" class="preview-control sound-control" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9h4l5-4v14l-5-4H4z"/>
+              <path class="muted-icon" d="m17 10 4 4m0-4-4 4"/>
+              <path class="sound-icon" d="M16 9a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12"/>
+            </svg>
+          </button>
+          <button type="button" class="preview-control playback-control">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path class="play-icon" d="m8 5 11 7-11 7z"/>
+              <path class="pause-icon" d="M9 5v14m6-14v14"/>
+            </svg>
+          </button>
+        </div>
+      </template>
+    </div>
+    <div class="works-grid" id="design-projects" hidden>
  <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic1.webp" alt="Black work shoe on an orange and black ad with protection and comfort feature callouts">
+    <img loading="lazy" src="img/Graphic1.webp" alt="Black work shoe on an orange and black ad with protection and comfort feature callouts">
     <div class="work-info">
       <h3>Work Shoe Benefits Ad</h3>
       <a href="https://www.canva.com/design/DAG7CkrsqdQ/WK7u6v1fg_okPL1kT5XYnw/edit?utm_content=DAG7CkrsqdQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">
@@ -121,7 +154,7 @@
   </div>
 
   <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic2.webp" alt="Black work shoes with a back-in-stock headline and discounted price">
+    <img loading="lazy" src="img/Graphic2.webp" alt="Black work shoes with a back-in-stock headline and discounted price">
     <div class="work-info">
       <h3>Work Shoe Restock Promotion</h3>
       <a href="https://www.canva.com/design/DAG7Co3uMPk/JhMhXrMtGaXBGOlr5lDpcg/edit?utm_content=DAG7Co3uMPk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">
@@ -131,7 +164,7 @@
   </div>
 
     <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic3.webp" alt="Cutaway work shoe sole above nails and sharp debris with protective layer callouts">
+    <img loading="lazy" src="img/Graphic3.webp" alt="Cutaway work shoe sole above nails and sharp debris with protective layer callouts">
     <div class="work-info">
       <h3>Sole Protection Features Ad</h3>
       <a href="https://www.canva.com/design/DAG7CvyXIIo/gFi-O8b1xMXrdT7pasMcAA/edit?utm_content=DAG7CvyXIIo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">
@@ -141,7 +174,7 @@
   </div>
 
     <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic4.webp" alt="Black work shoes with a sale-ending headline and countdown display">
+    <img loading="lazy" src="img/Graphic4.webp" alt="Black work shoes with a sale-ending headline and countdown display">
     <div class="work-info">
       <h3>Last-Chance Footwear Sale</h3>
       <a href="https://www.canva.com/design/DAG7CsgPeBg/eG1OJUQtT-RMuM0BluP4xQ/edit?utm_content=DAG7CsgPeBg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">
@@ -151,7 +184,7 @@
   </div>
 
     <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic5.webp" alt="Traditional work boot beside a modern work shoe with comfort and protection callouts">
+    <img loading="lazy" src="img/Graphic5.webp" alt="Traditional work boot beside a modern work shoe with comfort and protection callouts">
     <div class="work-info">
       <h3>Work Shoe Upgrade Ad</h3>
       <a href="https://canva.link/vx3xtrya3g8scaw" target="_blank" rel="noopener">
@@ -161,7 +194,7 @@
   </div>
 
     <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic6.webp" alt="Beige mesh work shoe with lightweight and breathable feature callouts and a summer offer">
+    <img loading="lazy" src="img/Graphic6.webp" alt="Beige mesh work shoe with lightweight and breathable feature callouts and a summer offer">
     <div class="work-info">
       <h3>Summer Work Shoe Promotion</h3>
       <a href="https://canva.link/83m6wkcin3xfomn" target="_blank" rel="noopener">
@@ -171,7 +204,7 @@
   </div>
   <!-- Hidden items -->
   <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic7.webp" alt="Hand holding a wellness supplement jar outdoors with a promotional offer">
+    <img loading="lazy" src="img/Graphic7.webp" alt="Hand holding a wellness supplement jar outdoors with a promotional offer">
     <div class="work-info">
       <h3>Wellness Lifestyle Ad</h3>
       <a href="https://canva.link/yzkkn1llzfkvuq6" target="_blank" rel="noopener">
@@ -181,7 +214,7 @@
   </div>
 
   <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic8.webp" alt="Wellness supplement jar beside an iced drink and fruit with product benefit callouts">
+    <img loading="lazy" src="img/Graphic8.webp" alt="Wellness supplement jar beside an iced drink and fruit with product benefit callouts">
     <div class="work-info">
       <h3>Wellness Product Benefits Ad</h3>
       <a href="https://canva.link/bfouhdrjb9st14r" target="_blank" rel="noopener">
@@ -191,7 +224,7 @@
   </div>
 
   <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic9.webp" alt="Two wellness supplement jars with a buy-one-get-one offer and free gifts promotion">
+    <img loading="lazy" src="img/Graphic9.webp" alt="Two wellness supplement jars with a buy-one-get-one offer and free gifts promotion">
     <div class="work-info">
       <h3>Wellness Bundle Promotion</h3>
       <a href="https://www.canva.com/design/DAG7ClyZ9D0/sfVFqjUi4DLvQsV4KW7nDQ/edit?utm_content=DAG7ClyZ9D0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">
@@ -201,7 +234,7 @@
   </div>
 
     <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic10.webp" alt="Car-inspired pendant necklaces on a dark background with product value callouts">
+    <img loading="lazy" src="img/Graphic10.webp" alt="Car-inspired pendant necklaces on a dark background with product value callouts">
     <div class="work-info">
       <h3>Automotive Jewelry Value Ad</h3>
       <a href="https://canva.link/0yl4tv3v2f6u8iq" target="_blank" rel="noopener">
@@ -211,7 +244,7 @@
   </div>
 
     <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic11.webp" alt="Gold and silver car-inspired pendants above a myth-versus-fact comparison">
+    <img loading="lazy" src="img/Graphic11.webp" alt="Gold and silver car-inspired pendants above a myth-versus-fact comparison">
     <div class="work-info">
       <h3>Jewelry Myth vs. Fact Ad</h3>
       <a href="https://canva.link/gbjl1135bcs37c6" target="_blank" rel="noopener">
@@ -221,7 +254,7 @@
   </div>
 
     <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
-    <img src="img/Graphic12.webp" alt="Side-by-side brown and silver chains with anti-rust, sweat-resistant, and waterproof callouts">
+    <img loading="lazy" src="img/Graphic12.webp" alt="Side-by-side brown and silver chains with anti-rust, sweat-resistant, and waterproof callouts">
     <div class="work-info">
       <h3>Jewelry Durability Comparison</h3>
       <a href="https://canva.link/riinyy2op5unve5" target="_blank" rel="noopener">
@@ -232,7 +265,7 @@
   <!-- add more graphic items with data-category="graphic" + class="filter-hide" -->
 
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
-        <img src="img/port1.png" alt="Mistaoud product landing page with an incense burner and product feature callouts">
+        <img loading="lazy" src="img/port1.png" alt="Mistaoud product landing page with an incense burner and product feature callouts">
         <div class="work-info">
           <h3>Mistaoud Revamp Web</h3>
           <a href="https://www.figma.com/design/58CFzqnvOYZOTrY00JihgD/Mistaoud-Revamp-Website---Jerome-Lagria?node-id=0-1&t=bOB8pRsSvXznNk8V-1" target="_blank">
@@ -243,7 +276,7 @@
 
       <!-- Work 2 -->
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
-        <img src="img/port2.png" alt="Metadvanced marketing website with service navigation and a client logo section">
+        <img loading="lazy" src="img/port2.png" alt="Metadvanced marketing website with service navigation and a client logo section">
         <div class="work-info">
           <h3>Metadvanced Webapp Revamp</h3>
           <a href="https://www.figma.com/design/od5SeUEKmV3Ap03UnawiI0/METADVANCED?node-id=0-1&p=f&t=SYLrmEkwVmFS7lhk-0" target="_blank">
@@ -254,7 +287,7 @@
 
       <!-- Work 3 -->
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
-        <img src="img/port3.png" alt="Advanced Virtual Staff landing page for cleaning business support with service imagery">
+        <img loading="lazy" src="img/port3.png" alt="Advanced Virtual Staff landing page for cleaning business support with service imagery">
         <div class="work-info">
           <h3>Advanced Virtual Staff UI UX Design</h3>
         <a href="https://www.figma.com/design/hEDi0psguATAmsHwy7rLHV/Virtual-Assistants-for-Cleaning-Services?node-id=0-1&p=f&t=bU18LdIIwuDvLPdE-0" target="_blank">
@@ -265,7 +298,7 @@
 
       <!-- Work 4 -->
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
-        <img src="img/port4.png" alt="Green Cleaner Services website with a carpet cleaning hero image and booking offer">
+        <img loading="lazy" src="img/port4.png" alt="Green Cleaner Services website with a carpet cleaning hero image and booking offer">
         <div class="work-info">
           <h3>Green Cleaner Services UI UX Design</h3>
         <a href="https://www.figma.com/design/b9x2EfqQa0gLyDsIpCisk4/Untitled?node-id=0-1&p=f&t=RTjANRXq9BSqnSS9-0" target="_blank">
@@ -277,7 +310,7 @@
 
       <!-- Work 5 -->
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
-        <img src="img/port5.png" alt="CommunITask mentorship interface with a search bar and steps for finding a mentor">
+        <img loading="lazy" src="img/port5.png" alt="CommunITask mentorship interface with a search bar and steps for finding a mentor">
         <div class="work-info">
           <h3>CommunItask Full UI UX Design</h3>
         <a href="https://www.figma.com/design/FBeP1u9djScGOytN48S3Yl/CommunITask?node-id=1-8475&p=f&t=ZzgHeQnC8feqcsj5-0" target="_blank">
@@ -289,7 +322,7 @@
 
       <!-- Work 6 -->
       <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
-        <img src="img/port6.png" alt="WebsiteManagers.ca homepage with a blue hero section and website management services">
+        <img loading="lazy" src="img/port6.png" alt="WebsiteManagers.ca homepage with a blue hero section and website management services">
         <div class="work-info">
           <h3>UI UX Designer of Websitemanagers.ca</h3>
           <a href="https://www.canva.com/design/DAG3ziwZ-kQ/U0nvbD-k0YtwkF2UKzU7Mg/edit?utm_content=DAG3ziwZ-kQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
@@ -300,7 +333,7 @@
 
         <!-- Hidden items -->
   <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
-    <img src="img/port7.png" alt="Heating and air conditioning service website with a technician photo and booking options">
+    <img loading="lazy" src="img/port7.png" alt="Heating and air conditioning service website with a technician photo and booking options">
     <div class="work-info">
       <h3>UI UX Co-designer of 24hvacservices</h3>
     <a href="https://24hvacservices.com/" target="_blank">
@@ -310,7 +343,7 @@
       </div>
 
   <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
-    <img src="img/port8.png" alt="Metadvanced Facebook cover promoting marketing services with social platform icons">
+    <img loading="lazy" src="img/port8.png" alt="Metadvanced Facebook cover promoting marketing services with social platform icons">
     <div class="work-info">
       <h3>Metadvanced Facebook Cover</h3>
     <a href="https://www.canva.com/design/DAG18-9rzEI/oZRRdEoxBo4dgrSqV6vBHQ/edit?utm_content=DAG18-9rzEI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
@@ -320,7 +353,7 @@
       </div>
 
   <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
-    <img src="img/port9.png" alt="FRIV gaming website redesign with purple navigation and a grid of game thumbnails">
+    <img loading="lazy" src="img/port9.png" alt="FRIV gaming website redesign with purple navigation and a grid of game thumbnails">
     <div class="work-info">
       <h3>FRIV Revamp</h3>
     <a href="https://www.figma.com/design/6GP2KZvUIOQcaSE1AqHrUs/Friv-Revamp-Web?node-id=0-1&t=JTStDgiVn56zEmWw-1" target="_blank">
@@ -332,8 +365,10 @@
 <!-- Show More button -->
 <div class="show-more-container">
   <button id="showMoreBtn" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="900">Show More</button>
-  <button id="showLessBtn" style="display:none;">Show Less</button>
+  <button id="showLessBtn" hidden>Show Less</button>
 </div>
+    </div>
+  </div>
 </section>
     <section id="skills" class="skills-section">
         <div class="skills-heading" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -530,91 +565,7 @@ function cancel(){
 }
 </script>
 
-<!-- Show More AOS Script -->
-<script>
-const showMoreBtn = document.getElementById('showMoreBtn');
-const showLessBtn = document.getElementById('showLessBtn');
-const hiddenItems = document.querySelectorAll('.work-item.hidden');
-
-showMoreBtn.addEventListener('click', () => {
-    hiddenItems.forEach((item, index) => {
-        // Remove hidden class
-        item.classList.remove('hidden');
-
-        // Set AOS attributes for animation
-        item.setAttribute('data-aos', 'zoom-in');
-        item.setAttribute('data-aos-duration', '1000');
-        item.setAttribute('data-aos-delay', index * 100); // stagger effect
-
-        // Refresh AOS to trigger animation
-        AOS.refreshHard();
-    });
-
-    showMoreBtn.style.display = 'none';
-    showLessBtn.style.display = 'inline-block';
-});
-
-showLessBtn.addEventListener('click', () => {
-    hiddenItems.forEach(item => {
-        item.classList.add('hidden');
-    });
-
-    showMoreBtn.style.display = 'inline-block';
-    showLessBtn.style.display = 'none';
-});
-</script>
-<script>
-// FILTER BETWEEN WEB DESIGN & GRAPHIC DESIGN
-const filterBtns = document.querySelectorAll('.filter-btn');
-const workItems = document.querySelectorAll('.work-item');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // active button state
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter; // "web" or "graphic"
-
-    workItems.forEach(item => {
-      const category = item.dataset.category; // from data-category
-
-      if (category === filter) {
-        item.classList.remove('filter-hide');
-      } else {
-        item.classList.add('filter-hide');
-      }
-    });
-  });
-});
-
-// set default filter to "graphic" on load
-window.addEventListener('DOMContentLoaded', () => {
-  const defaultBtn = document.querySelector('.filter-btn[data-filter="graphic"]');
-  if (defaultBtn) defaultBtn.click();
-});
-</script>
-
-<script>
-// Automatically apply filter based on URL
-window.addEventListener('DOMContentLoaded', () => {
-    // Get URL hash & query
-    const hash = window.location.hash; // e.g., "#myworks?filter=web"
-    if (!hash.startsWith('#myworks')) return; // Only run on #myworks
-
-    const params = new URLSearchParams(hash.split('?')[1]);
-    const filterValue = params.get('filter'); // "web" or "graphic"
-
-    if (filterValue) {
-        const btn = document.querySelector(`.filter-btn[data-filter="${filterValue}"]`);
-        if (btn) btn.click(); // trigger the filter button
-    }
-
-    // Smooth scroll to #myworks
-    const section = document.querySelector('#myworks');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
-});
-</script>
+<script src="works-gallery.js"></script>
 
 <script>
 (function () {
