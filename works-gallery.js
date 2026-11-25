@@ -175,6 +175,8 @@
 
   function measureEntrances() {
     const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+    // A fragment can scroll the body as well as the document. AOS only counts the latter.
+    const bodyScroll = document.body.scrollTop * zoom;
     const videoOffset = 0.25 * measureVideoViewport().visibleHeight;
     let lastGroup, firstCard, rowTop;
     let delay = 0;
@@ -198,7 +200,7 @@
         precedingGroup.set(element, lastGroup);
         lastGroup = element;
         offset = Math.min(videoOffset, 0.25 * element.offsetHeight * zoom);
-      } else if (zoom === 1) {
+      } else if (zoom === 1 && !bodyScroll) {
         element.removeAttribute('data-aos-offset');
         continue;
       }
@@ -208,7 +210,7 @@
         for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
         offset += top * (zoom - 1);
       }
-      element.dataset.aosOffset = Math.round(offset);
+      element.dataset.aosOffset = Math.round(offset - bodyScroll);
     }
   }
   function refreshEntrances() {
@@ -312,15 +314,53 @@
     }
   });
 
-  function selectLinkedCategory() {
+  function linkedCategory() {
     const [anchor, query] = location.hash.split('?');
     if (anchor !== '#myworks') return;
     const value = new URLSearchParams(query).get('filter');
-    if (categories.some(button => button.dataset.filter === value)) selectCategory(value);
-    if (query) section.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    return categories.find(button => button.dataset.filter === value)?.dataset.filter;
   }
-  selectCategory(category);
-  selectLinkedCategory();
+  selectCategory(linkedCategory() || category);
   window.AOS?.refreshHard();
-  window.addEventListener('hashchange', selectLinkedCategory);
+
+  function scrollToLinkedCategory(behavior) {
+    if (!location.hash.startsWith('#myworks?') || history.state?.worksFragment === location.hash) return;
+    // A return to this history entry should use the browser's saved scroll position.
+    history.replaceState({ ...history.state, worksFragment: location.hash }, '');
+    section.scrollIntoView({ behavior });
+  }
+  const root = document.documentElement;
+  if (root.dataset.worksEntry) {
+    if (root.dataset.worksEntry === 'anchor') scrollToLinkedCategory('instant');
+    document.body.addEventListener('scroll', refreshEntrances, { passive: true });
+    const landing = new AbortController();
+    function presentLanding() {
+      if (landing.signal.aborted) return;
+      landing.abort();
+      const top = navigation.getBoundingClientRect().bottom;
+      const bottom = root.clientHeight;
+      for (const element of entrances) {
+        const box = element.getBoundingClientRect();
+        if (box.height && box.bottom > top && box.top < bottom) {
+          element.classList.add('aos-animate');
+          entranceStarts.set(element, -Infinity);
+        }
+      }
+      // Set the offscreen cards to their starting styles before enabling transitions.
+      root.dataset.worksEntry = 'measured';
+      refreshEntrances();
+      section.getBoundingClientRect();
+      delete root.dataset.worksEntry;
+    }
+    window.addEventListener('pageshow', () => requestAnimationFrame(presentLanding), { once: true });
+    // Release the landing immediately if the visitor starts navigating before load.
+    for (const event of ['wheel', 'pointerdown', 'keydown']) {
+      window.addEventListener(event, presentLanding, { passive: true, signal: landing.signal });
+    }
+  }
+  window.addEventListener('hashchange', () => {
+    const value = linkedCategory();
+    if (value) selectCategory(value);
+    scrollToLinkedCategory(reducedMotion.matches ? 'instant' : 'smooth');
+  });
 })();

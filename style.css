@@ -784,7 +784,21 @@ section:first-of-type {
   .video-card, .preview-control, .works-filter button, .video-filters button { transition: none; }
 }
 
-/* Keep gallery content available if the external AOS script cannot initialize. */
+/* Keep the direct landing visible while the browser positions the document. */
+html[data-works-entry="anchor"] {
+  scroll-snap-type: y proximity;
+}
+html[data-works-entry="anchor"] #myworks {
+  scroll-snap-align: start;
+}
+html[data-works-entry] body {
+  /* Let the document alone consume the fragment scroll, as AOS expects. */
+  overflow: clip;
+}
+html[data-works-entry] #myworks [data-aos][data-aos] {
+  transition: none;
+}
+html[data-works-entry]:not([data-works-entry="measured"]) #myworks [data-aos][data-aos],
 body:not([data-aos-duration]) #myworks [data-aos][data-aos] {
   opacity: 1;
   translate: none;

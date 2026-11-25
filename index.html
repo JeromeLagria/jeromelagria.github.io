@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (location.hash.split('?')[0] === '#myworks') {
+            const type = performance.getEntriesByType('navigation')[0]?.type;
+            document.documentElement.dataset.worksEntry = type === 'reload' || type === 'back_forward' ? 'restore' : 'anchor';
+        }
+    </script>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
