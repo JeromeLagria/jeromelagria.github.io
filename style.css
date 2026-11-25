@@ -125,6 +125,10 @@
     box-sizing: border-box;
 }
 /* Adjust the value to your navbar's height */
+#home {
+  scroll-margin-top: 10vh;
+}
+
 #about,
 #myworks,
 #skills,
@@ -187,6 +191,8 @@ nav {
 }
 
 .hamburg, .cancel{
+    background: transparent;
+    border: 0;
     cursor: pointer;
     position: absolute;
     right: 15px;
@@ -211,7 +217,12 @@ nav {
     transition: 0.3s linear; /* fixed from transform -> transition */
 }
 
-.nav-container .links a::before{
+.dropdown a span {
+    position: relative;
+}
+
+.nav-container .links a::before,
+.dropdown a span::before {
     position: absolute;
     content: "";
     bottom: -3px;
@@ -222,8 +233,20 @@ nav {
     transition: 0.2s linear;
 }
 
-.nav-container .links a:hover::before{
+.nav-container .links a[aria-current="location"]::before,
+.dropdown a[aria-current="location"] span::before {
     width: 100%;
+}
+
+@media (hover: hover) {
+    .nav-container .links a:hover::before,
+    .dropdown a:hover span::before {
+        width: 100%;
+    }
+
+    .dropdown .social-links a:not([aria-current]):hover {
+        background-color: rgb(154, 131, 101);
+    }
 }
 
 .nav-container .contact-btn{
@@ -239,7 +262,7 @@ nav {
     transition: 0.3 linear;
 }
 
-.nav-container .contact-btn:hover{
+.nav-container .contact-btn:hover:not(:has([aria-current])) {
     background-color: rgb(154, 131, 101);
     color: black;
 }
@@ -249,15 +272,22 @@ nav {
 }
 
 .dropdown{
+    display: none;
     z-index: 100;
     position: absolute;
     top: 0;
-    transform: translateY(-500px);
+    transform: translateY(calc(-100% - 2rem));
     width: 100%;
     height: auto;
+    max-height: 100dvh;
+    overflow-y: auto;
     backdrop-filter: brightness(40%) blur(3px);
     box-shadow: 0 0 20px black;
     transition: 0.2s linear; 
+}
+
+.dropdown:not([inert]) {
+    transform: translateY(0);
 }
 
 .dropdown .social-links a{
@@ -270,10 +300,6 @@ nav {
     transition: 0.2s linear;
 }
 
-
-.dropdown .social-links a:hover{
-    background-color: rgb(154, 131, 101);
-}
 
 section {
   width: 100%;
@@ -376,7 +402,8 @@ section:first-of-type {
 .content p{
     font-family: 'Poppins', sans-serif; /* or any font you like */
     font-size: clamp(0.8rem, 1vw + 0.5rem, 1rem); /* responsive size */
-    line-height: 1.4; /* adds spacing between lines */
+    max-width: min(68ch, 42rem);
+    line-height: 1.55;
     color: rgb(154, 131, 101); /* subtle dark gray */
     margin-top: 20px;
     font-weight: 400; /* medium solid */
@@ -385,7 +412,7 @@ section:first-of-type {
     -webkit-font-smoothing: antialiased;
 }
 
-.social-links i{
+.social-links i, .dropdown .cancel{
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -400,7 +427,7 @@ section:first-of-type {
     transition: 0.2s linear;
 }
 
-.social-links i:hover{
+.social-links i:hover, .dropdown .cancel:hover{
     scale: 1.3;
     color: white;
     background-color: rgb(154, 131, 101);
@@ -507,6 +534,27 @@ section:first-of-type {
 .works-section .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+#myworks [data-aos="video-fade-up"] {
+  --entry-timing: 1000ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  opacity: 0;
+  translate: 0 32px;
+  transition: opacity var(--entry-timing), translate var(--entry-timing);
+}
+#myworks [data-aos="video-fade-up"].aos-animate {
+  opacity: 1;
+  translate: 0 0;
+}
+#myworks :where(.works-heading, .works-filter, .video-filters, .video-reveal).aos-animate {
+  transition-delay: calc(var(--group-delay, 0ms) + var(--row-delay, 0ms));
+}
+/* Standard AOS fade-up uses transform; keep project hover on individual translate. */
+#myworks .work-item {
+  transition: opacity 1s, transform 1s, translate .28s ease, box-shadow .28s ease;
+}
+#myworks .show-more-container button {
+  transition: opacity 1s, transform 1s, background-color .3s, color .3s, box-shadow .3s;
 }
 
 /* heading */
@@ -619,11 +667,17 @@ section:first-of-type {
   gap: var(--gallery-gap);
 }
 
-.video-card {
-  position: relative;
+.video-slot {
   flex: 0 0 calc((100% - (var(--columns) - 1) * var(--gallery-gap)) / var(--columns));
   min-width: 0;
   aspect-ratio: 9 / 16;
+}
+
+.video-reveal, .video-card { height: 100%; }
+
+.video-card {
+  position: relative;
+  overflow: hidden;
   border-radius: 12px;
   background: #23211f;
   box-shadow: 0 6px 18px rgba(0,0,0,.06);
@@ -637,7 +691,6 @@ section:first-of-type {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: inherit;
   cursor: pointer;
 }
 
@@ -720,8 +773,23 @@ section:first-of-type {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #myworks [data-aos][data-aos] {
+    opacity: 1;
+    translate: none;
+    transform: none;
+    transition: none;
+    pointer-events: auto;
+  }
   .video-card:hover { transform: none; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
   .video-card, .preview-control, .works-filter button, .video-filters button { transition: none; }
+}
+
+/* Keep gallery content available if the external AOS script cannot initialize. */
+body:not([data-aos-duration]) #myworks [data-aos][data-aos] {
+  opacity: 1;
+  translate: none;
+  transform: none;
+  pointer-events: auto;
 }
 
 /* Hide items via filter (different from your .hidden used for Show More) */
@@ -743,7 +811,6 @@ section:first-of-type {
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
-  transition: transform .28s ease, box-shadow .28s ease;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
@@ -754,17 +821,6 @@ section:first-of-type {
   height: 260px;
   object-fit: cover;
   transition: transform .6s ease;
-}
-.work-item.hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-/* When revealed */
-.work-item.show {
-    opacity: 1;
-    transform: scale(1);
 }
 
 /* overlay that appears on hover */
@@ -812,7 +868,7 @@ section:first-of-type {
 
 /* hover interactions */
 .work-item:hover {
-  transform: translateY(-6px);
+  translate: 0 -6px;
   box-shadow: 0 18px 40px rgba(154,131,101,0.12);
 }
 .work-item:hover img {
@@ -1316,6 +1372,7 @@ section:first-of-type {
         display: none;
     }
 
+    .dropdown,
     .hamburg,
     .cancel {
         display: block;

@@ -12,15 +12,15 @@
   const less = section.querySelector('#showLessBtn');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // Display order, asset stem, filter, accessible name, and presence of audible content.
+  // In display order: asset stem, filter, accessible name, audible track, optional framing scale.
   const catalogue = [
     ['1_UGC_Podcast',  'ugc',   'UGC podcast ad', true],
-    ['1_Viral',        'viral', 'Viral reel 1, park bench startup idea', true],
-    ['2_UGC_LongForm', 'ugc',   'Long-form UGC product ad', true],
+    ['1_Viral',        'viral', 'Viral reel 1, park bench startup idea', true, 1.006],
+    ['2_UGC_LongForm', 'ugc',   'Long-form UGC product ad', true, 1.005],
     ['2_Viral',        'viral', 'Viral reel 2, rate my startup idea', true],
-    ['3_UGC_Reaction', 'ugc',   'UGC founder reaction ad', false],
+    ['3_UGC_Reaction', 'ugc',   'UGC founder reaction ad', false, 1.015],
+    ['4_UGC_New',      'ugc',   'UGC outdoor subscriber testimonial', true, 1.037],
     ['3_Viral',        'viral', 'Viral reel 3, do not show this to a founder', false],
-    ['4_UGC_B-Roll',   'ugc',   'UGC B-roll ad, a message from a friend', true],
     ['4_Viral',        'viral', 'Viral reel 4, weekend startup idea', false],
   ];
   const previews = new Map();
@@ -112,14 +112,16 @@
     refreshControls(preview);
   }
 
-  for (const [stem, type, name, hasAudio] of catalogue) {
-    const card = template.content.firstElementChild.cloneNode(true);
+  for (const [stem, type, name, hasAudio, scale] of catalogue) {
+    const slot = template.content.firstElementChild.cloneNode(true);
+    const card = slot.querySelector('.video-card');
     const video = card.querySelector('video');
     const sound = card.querySelector('.sound-control');
     const playback = card.querySelector('.playback-control');
-    const preview = { card, video, sound: hasAudio ? sound : null, playback, stem, type, name,
+    const preview = { slot, card, video, sound: hasAudio ? sound : null, playback, stem, type, name,
       intent: 'auto', active: false, visible: false, blocked: false, pending: null };
     video.setAttribute('aria-label', name);
+    if (scale) video.style.transform = 'scale(' + scale + ')';
     video.muted = true;
     try { video.volume = 0.5; } catch { /* Some devices control volume in hardware. */ }
     if (hasAudio) {
@@ -144,9 +146,77 @@
       preview.touchTimer = setTimeout(() => card.classList.remove('touch-controls'), 3500);
     });
     refreshControls(preview);
-    previews.set(card, preview);
-    grid.append(card);
+    previews.set(slot, preview);
+    grid.append(slot);
   }
+
+  const navigation = document.querySelector('nav');
+  function measureVideoViewport() {
+    const navHeight = Math.ceil(navigation.getBoundingClientRect().height);
+    const available = Math.max(1, document.documentElement.clientHeight - navHeight);
+    const slotHeight = grid.querySelector('.video-slot:not([hidden])')?.getBoundingClientRect().height || available;
+    return { navHeight, slotHeight, visibleHeight: Math.min(slotHeight, available) };
+  }
+
+  const entrances = section.querySelectorAll('[data-aos]');
+  const precedingGroup = new Map();
+  const entranceStarts = new Map();
+  document.addEventListener('aos:in', ({ detail: element }) => {
+    if (!precedingGroup.has(element) || entranceStarts.has(element)) return;
+    const now = performance.now();
+    const previousStart = entranceStarts.get(precedingGroup.get(element)) ?? -Infinity;
+    const delay = reducedMotion.matches ? 0 : Math.max(0, Math.round(previousStart + 120 - now));
+    if (delay) element.style.setProperty('--group-delay', delay + 'ms');
+    // Groups above the fixed navigation don't hold up a jump into the gallery.
+    const box = element.closest('.video-slot') || element;
+    const inView = box.getBoundingClientRect().bottom > navigation.getBoundingClientRect().bottom;
+    entranceStarts.set(element, inView ? now + delay : -Infinity);
+  });
+
+  function measureEntrances() {
+    const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+    const videoOffset = 0.25 * measureVideoViewport().visibleHeight;
+    let lastGroup, firstCard, rowTop;
+    let delay = 0;
+    for (const element of entrances) {
+      if (!element.getClientRects().length) {
+        // A hidden element has offsetTop zero. Defer its once-only entrance until shown.
+        element.dataset.aosOffset = Number.MAX_SAFE_INTEGER;
+        continue;
+      }
+      const slot = element.closest('.video-slot');
+      let offset = 200; // The site's standard AOS offset.
+      if (slot) {
+        firstCard ??= element;
+        delay = slot.offsetTop === rowTop ? Math.min(delay + 60, 120) : 0;
+        rowTop = slot.offsetTop;
+        element.style.setProperty('--row-delay', delay + 'ms');
+        // Later rows share a predecessor so their delays never accumulate.
+        precedingGroup.set(element, rowTop === firstCard.parentElement.offsetTop ? lastGroup : firstCard);
+        offset = videoOffset;
+      } else if (element.matches('.works-heading, .works-filter, .video-filters')) {
+        precedingGroup.set(element, lastGroup);
+        lastGroup = element;
+        offset = Math.min(videoOffset, 0.25 * element.offsetHeight * zoom);
+      } else if (zoom === 1) {
+        element.removeAttribute('data-aos-offset');
+        continue;
+      }
+      if (zoom !== 1) {
+        // AOS sums unscaled offsets; account for the site's large-screen body zoom.
+        let top = 0;
+        for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+        offset += top * (zoom - 1);
+      }
+      element.dataset.aosOffset = Math.round(offset);
+    }
+  }
+  function refreshEntrances() {
+    measureEntrances();
+    window.AOS?.refresh();
+  }
+  window.addEventListener('resize', measureEntrances, { capture: true });
+  window.addEventListener('load', refreshEntrances, { once: true });
 
   const nearbyObserver = new IntersectionObserver(entries => {
     for (const entry of entries) {
@@ -155,44 +225,48 @@
     }
   }, { rootMargin: '300px 0px' });
 
-  // Exclude the fixed navigation and use separate entry/exit thresholds to avoid flicker.
-  const navigation = document.querySelector('nav');
+  // For tall portrait cards, measure the fraction of a screenful rather than a whole card.
   function observeViewport() {
+    const { navHeight, slotHeight, visibleHeight } = measureVideoViewport();
+    const screenful = visibleHeight / slotHeight;
+    const enter = 0.30 * screenful;
+    const leave = 0.10 * screenful;
     visibleObserver?.disconnect();
     visibleObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
         const preview = previews.get(entry.target);
         if (!preview.active || document.hidden) continue;
-        if (entry.intersectionRatio >= 0.4) {
+        if (entry.intersectionRatio >= enter) {
           preview.visible = true;
           start(preview);
-        } else if (entry.intersectionRatio < 0.12) {
+        } else if (entry.intersectionRatio < leave) {
           preview.visible = false;
           pause(preview);
         }
       }
-    }, { rootMargin: '-' + Math.ceil(navigation.getBoundingClientRect().height) + 'px 0px 0px',
-      threshold: [0, 0.12, 0.4] });
+    }, { rootMargin: '-' + navHeight + 'px 0px 0px', threshold: [0, leave, enter] });
     for (const preview of previews.values()) {
-      if (preview.active) visibleObserver.observe(preview.card);
+      if (preview.active) visibleObserver.observe(preview.slot);
     }
   }
   observeViewport();
-  new ResizeObserver(observeViewport).observe(navigation);
+  const layoutObserver = new ResizeObserver(observeViewport);
+  layoutObserver.observe(navigation);
+  layoutObserver.observe(grid);
 
   function updateVideos() {
     for (const preview of previews.values()) {
       const shown = category === 'video' && (videoType === 'all' || videoType === preview.type);
-      preview.card.hidden = !shown;
+      preview.slot.hidden = !shown;
       const active = shown && !document.hidden;
       if (preview.active === active) continue;
       preview.active = active;
       if (active) {
-        nearbyObserver.observe(preview.card);
-        visibleObserver.observe(preview.card);
+        nearbyObserver.observe(preview.slot);
+        visibleObserver.observe(preview.slot);
       } else {
-        nearbyObserver.unobserve(preview.card);
-        visibleObserver.unobserve(preview.card);
+        nearbyObserver.unobserve(preview.slot);
+        visibleObserver.unobserve(preview.slot);
         preview.visible = false;
         pause(preview);
       }
@@ -206,24 +280,23 @@
     projects.hidden = value === 'video';
     items.forEach(item => item.classList.toggle('filter-hide', item.dataset.category !== value));
     updateVideos();
-    window.AOS?.refresh();
+    refreshEntrances();
   }
   categories.forEach(button => button.addEventListener('click', () => selectCategory(button.dataset.filter)));
   filters.forEach(button => button.addEventListener('click', () => {
     videoType = button.dataset.type;
     filters.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
     updateVideos();
-    window.AOS?.refresh();
+    refreshEntrances();
   }));
 
   function expandProjects(expanded) {
-    extraItems.forEach((item, index) => {
+    extraItems.forEach(item => {
       item.classList.toggle('hidden', !expanded);
-      if (expanded) item.dataset.aosDelay = index * 100;
     });
     more.hidden = expanded;
     less.hidden = !expanded;
-    window.AOS?.refresh();
+    refreshEntrances();
     (expanded ? less : more).focus({ preventScroll: true });
   }
   more.addEventListener('click', () => expandProjects(true));
@@ -248,5 +321,6 @@
   }
   selectCategory(category);
   selectLinkedCategory();
+  window.AOS?.refreshHard();
   window.addEventListener('hashchange', selectLinkedCategory);
 })();

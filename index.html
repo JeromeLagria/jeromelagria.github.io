@@ -17,28 +17,28 @@
                 <span>Jerome Portfolio</span> 
             </div>
             <div class="links">
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#" onclick="scrollToTop(event)">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#home">Home</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"><a href="#about">About Me</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#myworks">My Works</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#skills">Skills</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#services">Services</a></div>
                 <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#contact-me">Contact Me</a></div>
             </div>
-        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <button type="button" class="fa-solid fa-bars hamburg" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"></button>
         </div>
-        <div class="dropdown">
+        <div class="dropdown" id="mobile-nav" inert>
             <div class="social-links">
-                <a href="#"onclick="scrollToTop(event)">Home</a>
-                <a href="#about">About Me</a>
-                <a href="#myworks">My Works</a>
-                <a href="#skills">Skills</a>
-                <a href="#services">Services</a>
-                <a href="#contact-me">Contact Us</a>
-                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+                <a href="#home"><span>Home</span></a>
+                <a href="#about"><span>About Me</span></a>
+                <a href="#myworks"><span>My Works</span></a>
+                <a href="#skills"><span>Skills</span></a>
+                <a href="#services"><span>Services</span></a>
+                <a href="#contact-me"><span>Contact Me</span></a>
+                <button type="button" class="fa-solid fa-xmark cancel" aria-label="Close navigation"></button>
             </div>
         </div>
     </nav>
-        <section>
+        <section id="home">
             <div class="main-container">
                 <div class="image" data-aos="fade-up" data-aos-duration="1000">
                     <img src="image.png" alt="">
@@ -97,11 +97,12 @@
  </section>
 <section id="myworks" class="works-section">
   <div class="container">
-    <div class="works-heading" data-aos="fade-up" data-aos-duration="1000">
+    <div class="works-heading" data-aos="fade-up">
       <h2>My Works</h2>
       <p>A selection of my advertising creatives and design work.</p>
     </div>
-    <div class="works-filter" role="group" aria-label="Work categories">
+    <div class="works-filter" role="group" aria-label="Work categories"
+         data-aos="fade-up">
       <button type="button" class="filter-btn" data-filter="video" aria-pressed="true" aria-controls="video-ads">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 17-4 1 5-17 4zM7 6l4 4m2-5 4 4M4 12h17v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
         <span>Video Ads</span>
@@ -116,7 +117,8 @@
       </button>
     </div>
     <div id="video-ads" class="video-gallery">
-      <div class="video-filters" role="group" aria-labelledby="video-type-label">
+      <div class="video-filters" role="group" aria-labelledby="video-type-label"
+           data-aos="fade-up">
         <span id="video-type-label">Video Type:</span>
         <button type="button" data-type="all" aria-pressed="true">All Videos</button>
         <button type="button" data-type="ugc" aria-pressed="false">UGC-Style</button>
@@ -124,26 +126,30 @@
       </div>
       <div class="video-grid"></div>
       <template id="video-preview">
-        <div class="video-card">
-          <video muted loop playsinline preload="none"></video>
-          <button type="button" class="preview-control sound-control" aria-pressed="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 9h4l5-4v14l-5-4H4z"/>
-              <path class="muted-icon" d="m17 10 4 4m0-4-4 4"/>
-              <path class="sound-icon" d="M16 9a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12"/>
-            </svg>
-          </button>
-          <button type="button" class="preview-control playback-control">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path class="play-icon" d="m8 5 11 7-11 7z"/>
-              <path class="pause-icon" d="M9 5v14m6-14v14"/>
-            </svg>
-          </button>
+        <div class="video-slot">
+          <div class="video-reveal" data-aos="video-fade-up">
+            <div class="video-card">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="preview-control sound-control" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 9h4l5-4v14l-5-4H4z"/>
+                  <path class="muted-icon" d="m17 10 4 4m0-4-4 4"/>
+                  <path class="sound-icon" d="M16 9a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12"/>
+                </svg>
+              </button>
+              <button type="button" class="preview-control playback-control">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path class="play-icon" d="m8 5 11 7-11 7z"/>
+                  <path class="pause-icon" d="M9 5v14m6-14v14"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </template>
     </div>
     <div class="works-grid" id="design-projects" hidden>
- <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+ <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic1.webp" alt="Black work shoe on an orange and black ad with protection and comfort feature callouts">
     <div class="work-info">
       <h3>Work Shoe Benefits Ad</h3>
@@ -153,7 +159,7 @@
     </div>
   </div>
 
-  <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+  <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic2.webp" alt="Black work shoes with a back-in-stock headline and discounted price">
     <div class="work-info">
       <h3>Work Shoe Restock Promotion</h3>
@@ -163,7 +169,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic3.webp" alt="Cutaway work shoe sole above nails and sharp debris with protective layer callouts">
     <div class="work-info">
       <h3>Sole Protection Features Ad</h3>
@@ -173,7 +179,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic4.webp" alt="Black work shoes with a sale-ending headline and countdown display">
     <div class="work-info">
       <h3>Last-Chance Footwear Sale</h3>
@@ -183,7 +189,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic5.webp" alt="Traditional work boot beside a modern work shoe with comfort and protection callouts">
     <div class="work-info">
       <h3>Work Shoe Upgrade Ad</h3>
@@ -193,7 +199,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic6.webp" alt="Beige mesh work shoe with lightweight and breathable feature callouts and a summer offer">
     <div class="work-info">
       <h3>Summer Work Shoe Promotion</h3>
@@ -203,7 +209,7 @@
     </div>
   </div>
   <!-- Hidden items -->
-  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic7.webp" alt="Hand holding a wellness supplement jar outdoors with a promotional offer">
     <div class="work-info">
       <h3>Wellness Lifestyle Ad</h3>
@@ -213,7 +219,7 @@
     </div> 
   </div>
 
-  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic8.webp" alt="Wellness supplement jar beside an iced drink and fruit with product benefit callouts">
     <div class="work-info">
       <h3>Wellness Product Benefits Ad</h3>
@@ -223,7 +229,7 @@
     </div>
   </div>
 
-  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+  <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic9.webp" alt="Two wellness supplement jars with a buy-one-get-one offer and free gifts promotion">
     <div class="work-info">
       <h3>Wellness Bundle Promotion</h3>
@@ -233,7 +239,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic10.webp" alt="Car-inspired pendant necklaces on a dark background with product value callouts">
     <div class="work-info">
       <h3>Automotive Jewelry Value Ad</h3>
@@ -243,7 +249,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic11.webp" alt="Gold and silver car-inspired pendants above a myth-versus-fact comparison">
     <div class="work-info">
       <h3>Jewelry Myth vs. Fact Ad</h3>
@@ -253,7 +259,7 @@
     </div>
   </div>
 
-    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="150">
+    <div class="work-item filter-hide hidden" data-category="graphic" data-aos="fade-up">
     <img loading="lazy" src="img/Graphic12.webp" alt="Side-by-side brown and silver chains with anti-rust, sweat-resistant, and waterproof callouts">
     <div class="work-info">
       <h3>Jewelry Durability Comparison</h3>
@@ -264,7 +270,7 @@
   </div>
   <!-- add more graphic items with data-category="graphic" + class="filter-hide" -->
 
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port1.png" alt="Mistaoud product landing page with an incense burner and product feature callouts">
         <div class="work-info">
           <h3>Mistaoud Revamp Web</h3>
@@ -275,7 +281,7 @@
       </div>
 
       <!-- Work 2 -->
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port2.png" alt="Metadvanced marketing website with service navigation and a client logo section">
         <div class="work-info">
           <h3>Metadvanced Webapp Revamp</h3>
@@ -286,7 +292,7 @@
       </div>
 
       <!-- Work 3 -->
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port3.png" alt="Advanced Virtual Staff landing page for cleaning business support with service imagery">
         <div class="work-info">
           <h3>Advanced Virtual Staff UI UX Design</h3>
@@ -297,7 +303,7 @@
       </div>
 
       <!-- Work 4 -->
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port4.png" alt="Green Cleaner Services website with a carpet cleaning hero image and booking offer">
         <div class="work-info">
           <h3>Green Cleaner Services UI UX Design</h3>
@@ -309,7 +315,7 @@
 
 
       <!-- Work 5 -->
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port5.png" alt="CommunITask mentorship interface with a search bar and steps for finding a mentor">
         <div class="work-info">
           <h3>CommunItask Full UI UX Design</h3>
@@ -321,7 +327,7 @@
 
 
       <!-- Work 6 -->
-      <div class="work-item" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+      <div class="work-item" data-category="web" data-aos="fade-up">
         <img loading="lazy" src="img/port6.png" alt="WebsiteManagers.ca homepage with a blue hero section and website management services">
         <div class="work-info">
           <h3>UI UX Designer of Websitemanagers.ca</h3>
@@ -332,7 +338,7 @@
       </div>
 
         <!-- Hidden items -->
-  <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+  <div class="work-item hidden" data-category="web" data-aos="fade-up">
     <img loading="lazy" src="img/port7.png" alt="Heating and air conditioning service website with a technician photo and booking options">
     <div class="work-info">
       <h3>UI UX Co-designer of 24hvacservices</h3>
@@ -342,7 +348,7 @@
         </div>
       </div>
 
-  <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
+  <div class="work-item hidden" data-category="web" data-aos="fade-up">
     <img loading="lazy" src="img/port8.png" alt="Metadvanced Facebook cover promoting marketing services with social platform icons">
     <div class="work-info">
       <h3>Metadvanced Facebook Cover</h3>
@@ -352,7 +358,7 @@
         </div>
       </div>
 
-  <div class="work-item hidden" data-category="web" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
+  <div class="work-item hidden" data-category="web" data-aos="fade-up">
     <img loading="lazy" src="img/port9.png" alt="FRIV gaming website redesign with purple navigation and a grid of game thumbnails">
     <div class="work-info">
       <h3>FRIV Revamp</h3>
@@ -364,8 +370,8 @@
 
 <!-- Show More button -->
 <div class="show-more-container">
-  <button id="showMoreBtn" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="900">Show More</button>
-  <button id="showLessBtn" hidden>Show Less</button>
+  <button id="showMoreBtn" data-aos="fade-up">Show More</button>
+  <button id="showLessBtn" data-aos="fade-up" hidden>Show Less</button>
 </div>
     </div>
   </div>
@@ -541,28 +547,78 @@ AOS.init({
 </script>
 
 <script>
-function scrollToTop(event) {
-    event.preventDefault(); 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+(() => {
+    const nav = document.querySelector('nav');
+    const links = nav.querySelectorAll('a[href^="#"]');
+    const sections = Array.from(nav.querySelectorAll('.links a'), link => document.getElementById(link.hash.slice(1)));
+    const viewport = window.visualViewport;
+    let activeSection;
+    let framePending = false;
 
-document.querySelectorAll('.links a').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    function updateCurrentSection() {
+        framePending = false;
+        const root = document.documentElement;
+        const top = viewport?.offsetTop ?? 0;
+        const bottom = top + (viewport?.height ?? root.clientHeight);
+        const usableTop = Math.max(top, nav.getBoundingClientRect().bottom);
+        const readingLine = usableTop + (bottom - usableTop) * 0.35;
+        let current = sections[0];
+
+        const atTop = window.scrollY + top <= 0;
+        if (!atTop && window.scrollY + bottom >= root.scrollHeight - 1) {
+            current = sections[sections.length - 1];
+        } else if (!atTop) {
+            // Section boxes and the fixed nav share viewport coordinates, including CSS zoom.
+            for (const section of sections) {
+                if (section.getBoundingClientRect().top > readingLine) break;
+                current = section;
+            }
+        }
+
+        if (current === activeSection) return;
+        activeSection = current;
+        for (const link of links) {
+            if (link.hash === '#' + current.id) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        }
+    }
+
+    function scheduleUpdate() {
+        if (framePending) return;
+        framePending = true;
+        requestAnimationFrame(updateCurrentSection);
+    }
+
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('pageshow', scheduleUpdate);
+    viewport?.addEventListener('resize', scheduleUpdate);
+    viewport?.addEventListener('scroll', scheduleUpdate, { passive: true });
+    const layoutObserver = new ResizeObserver(scheduleUpdate);
+    layoutObserver.observe(nav);
+    sections.forEach(section => layoutObserver.observe(section, { box: 'border-box' }));
+    updateCurrentSection();
+
+    nav.querySelectorAll('.links a, .dropdown a[href="#home"]').forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            document.getElementById(link.hash.slice(1)).scrollIntoView({ behavior: 'smooth' });
+        });
     });
-});
 
-function hamburg(){
-    const navbar = document.querySelector(".dropdown");
-    navbar.style.transform = "translateY(0px)";
-}
-
-function cancel(){
-    const navbar = document.querySelector(".dropdown");
-    navbar.style.transform = "translateY(-500px)";
-}
+    const menu = nav.querySelector('.dropdown');
+    const toggle = nav.querySelector('.hamburg');
+    function setMenuOpen(open) {
+        menu.inert = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        (open ? menu.querySelector('[aria-current]') : toggle).focus({ preventScroll: true });
+    }
+    toggle.addEventListener('click', () => setMenuOpen(true));
+    menu.querySelector('.cancel').addEventListener('click', () => setMenuOpen(false));
+    menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenuOpen(false);
+    });
+})();
 </script>
 
 <script src="works-gallery.js"></script>
